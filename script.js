@@ -24,8 +24,6 @@ $(document).ready(() => {
             $('#clientesAtivos').html(data.clientes[0])
             $('#clientesInativos').html(data.clientes[1])
             $('#despesa').html(data.despesa)       
-
-            console.log(data)
         },
         error: (err) => {
             console.log(err)
@@ -52,8 +50,6 @@ $(document).ready(() => {
                 $('#clientesAtivos').html(data.clientes[0])
                 $('#clientesInativos').html(data.clientes[1])       
                 $('#despesa').html(data.despesa)       
-
-                console.log(data)
             },
             error: (err) => {
                 console.log(err)
