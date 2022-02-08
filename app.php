@@ -152,8 +152,8 @@
     }else if(!isset($_GET['competencia']) || $_GET['competencia'] == 'all'){
         
         
-        $dashboard->__set('data_inicio', '2018-01-01');
-        $dashboard->__set('data_fim', '2018-12-31');
+        $dashboard->__set('data_inicio', '2021-01-01');
+        $dashboard->__set('data_fim', '2021-12-31');
         
         
     }
