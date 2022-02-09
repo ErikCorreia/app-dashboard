@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Ajax com jQuery</title>
+	<title>Dashboard</title>
 
 	<!-- estilos -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -25,7 +25,7 @@
 
 </head>
 
-<body>
+<body id="app">
 	<!-- menu -->
 	<div class="nav-side-menu">
 		<div class="brand">DashVendas</div>
@@ -58,19 +58,7 @@
 			<div class="row">
 				<div class="col">
 
-					<form>
-						<div class="form-group row">
-							<label class="col-sm-8 col-form-label">Competência:</label>
-							<div class="col-sm-4">
-								<select class="form-control-plaintext" id="competencia">
-									<option value="all">Todos</option>
-									<option value="2021-08">Agosto / 2021</option>
-									<option value="2021-09">Setembro / 2021</option>
-									<option value="2021-10">Outubro / 2021</option>
-								</select>
-							</div>
-						</div>
-					</form>
+					
 
 					<hr />
 
@@ -103,7 +91,33 @@
 			</div>
 
 			<hr>
-			<h3>Vendas</h3>
+			<div class="row">
+				<div class="col">
+					<h3 class="my-2">Vendas</h3>
+				</div>
+				
+				<div class="col-6 col-lg-2">
+
+					<form>
+						<select class="form-control" id="competencia">
+							<option value="all">Todos</option>
+							<option value="2021-01">Janeiro / 2021</option>
+							<option value="2021-02">Aevereiro / 2021</option>
+							<option value="2021-03">Março / 2021</option>
+							<option value="2021-04">Abril / 2021</option>
+							<option value="2021-05">Maio / 2021</option>
+							<option value="2021-06">Junho / 2021</option>
+							<option value="2021-07">Julho / 2021</option>
+							<option value="2021-08">Agosto / 2021</option>
+							<option value="2021-09">Setembro / 2021</option>
+							<option value="2021-10">Outubro / 2021</option>
+							<option value="2021-11">Novembro / 2021</option>
+							<option value="2021-12">Dezembro / 2021</option>
+						</select>
+					</form>
+
+				</div>
+			</div>
 
 			<div class="row mb-3">
 				<div class="col-md-4">

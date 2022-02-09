@@ -54,6 +54,7 @@
             $this->dashboard = $dashboard;
         }
 
+        //recupera o total de despesas entre determinado periodo
         public function getTotalDespesas(){
             $query = ("SELECT sum(total) as despesa FROM tb_despesas WHERE data_despesa BETWEEN :data_inicio and :data_fim");
                     
@@ -72,6 +73,7 @@
             $stmtInativos = $this->connection->prepare($queryInativos);
             $stmtAtivos->execute();
             $stmtInativos->execute();
+
             return [
                 0 => $stmtAtivos->fetch(PDO::FETCH_OBJ)->ativos,
                 1 => $stmtInativos->fetch(PDO::FETCH_OBJ)->inativos
@@ -134,9 +136,12 @@
         }
     }
 
-    $dashboard = new Dashboard();
-    $connection = new Connection();
+    $dashboard = new Dashboard(); //objetos da classe
+    $connection = new Connection();//inicia uma conexão a partir do modelo instanciado
     
+    //Verifica se o há algum filtro setado na superglobal GET 
+    //se sim será setado $this->em data_inicio e $this->data_fim 
+    //se não será aplicado um valor fixo
     if(isset($_GET['competencia']) && $_GET['competencia'] !== 'all') {
     
         $limitData = explode('-', $_GET['competencia']);
@@ -157,9 +162,10 @@
         
         
     }
-    
+    //instancia de serviços da classe ServiceDB
     $serviceDB = new ServiceDB($connection, $dashboard);
     
+    //funções de serviços da classe
     $dashboard->__set('numero_de_vendas', $serviceDB->getNumeroVendas());
     $dashboard->__set('total_de_vendas', $serviceDB->getTotalVendas());
     
@@ -167,6 +173,7 @@
     $dashboard->__set('clientes', $serviceDB->getClientesAtivosInativos());
     $dashboard->__set('despesa', $serviceDB->getTotalDespesas());
 
+    //retorna os valores no formato json para o frontend
     echo json_encode($dashboard);
     
 

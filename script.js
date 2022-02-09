@@ -1,4 +1,31 @@
+const apiRequest = (filter) => {
+    
+    $.ajax({
+        type: 'GET',
+        url: './app.php',
+        data: `competencia=${filter}`,
+        dataType: 'json',
+        success: (data) => {
+            $('#numeroVendas').html(data.numero_de_vendas ? data.numero_de_vendas : '0');
+            $('#totalVendas').html(data.total_de_vendas ? `R$ ${data.total_de_vendas}` : '0');
+            $('#reclamacoes').html(data.contato[0] ? data.contato[0] : '0');
+            $('#elogios').html(data.contato[1] ? data.contato[1] : '0');
+            $('#sugestoes').html(data.contato[2] ? data.contato[2] : '0');
+            $('#clientesAtivos').html(data.clientes[0] ? data.clientes[0] : '0')
+            $('#clientesInativos').html(data.clientes[1] ? data.clientes[1] : '0')
+            $('#despesa').html( data.despesa ? `R$ ${data.despesa}` : '0')       
+        },
+
+        error: (err) => {
+            console.log(err);
+
+        }
+    })
+}
+
 $(document).ready(() => {
+
+    apiRequest('all');
 
 	$('#documentacao').click(() => {
         $('#pagina').load('./documentacao.html');
@@ -6,56 +33,11 @@ $(document).ready(() => {
 	$('#suporte').click(() => {
         $('#pagina').load('./suporte.html');
     })
-    
-    
-    //Ajax Http request
-
-    $.ajax({
-        type: 'GET',
-        url: './app.php',
-        data: 'competencia=all',
-        dataType: 'json',
-        success: (data) => {
-            $('#numeroVendas').html(data.numero_de_vendas)
-            $('#totalVendas').html('R$ ' + data.total_de_vendas)
-            $('#reclamacoes').html(data.contato[0])
-            $('#elogios').html(data.contato[1])
-            $('#sugestoes').html(data.contato[2])
-            $('#clientesAtivos').html(data.clientes[0])
-            $('#clientesInativos').html(data.clientes[1])
-            $('#despesa').html(data.despesa)       
-        },
-        error: (err) => {
-            console.log(err)
-
-        }
-
-    })
 
     //request on change select
     $('#competencia').change((e) => {
-        const dataValue = $(e.target).val();
+        const filterData = $(e.target).val();
 
-        $.ajax({
-            type: 'GET',
-            url: './app.php',
-            data: `competencia=${dataValue}`,
-            dataType: 'json',
-            success: (data) => {
-                $('#numeroVendas').html(data.numero_de_vendas)
-                $('#totalVendas').html('R$ ' + data.total_de_vendas)
-                $('#reclamacoes').html(data.contato[0])
-                $('#elogios').html(data.contato[1])
-                $('#sugestoes').html(data.contato[2])
-                $('#clientesAtivos').html(data.clientes[0])
-                $('#clientesInativos').html(data.clientes[1])       
-                $('#despesa').html(data.despesa)       
-            },
-            error: (err) => {
-                console.log(err)
-
-            }
-
-        })
+        apiRequest(filterData);
     })
 })
