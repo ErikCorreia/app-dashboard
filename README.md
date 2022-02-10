@@ -1,17 +1,6 @@
 # app-dashboard
 
-App dashboard que simula uma tela simples de acompanhamento de vendas.
-exibindo na tela o total de clientes, despezas, etc..., retornado do banco de dados com os devidos filtros aplicados.
-
-## Tecnologias utilizadas
-
-- [x] jquery
-- [x] ajax
-- [x] PHP
-- [x] mysql
-
-
-# Criar banco de dados
+App dashboard simula uma tela simples de acompanhamento de vendas, total de clientes, despezas, etc..., retornado do banco de dados com os devidos filtros aplicados.
 
 ## SQL
 
